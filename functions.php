@@ -43,10 +43,7 @@ function dd($var) {
  */
 function behead_filter_incoming_connections( $errors ){
     // Allow access only from specific domains
-    $allowed_domains = [
-        'localhost:8000',
-        'https://mmdoomsday-site.jfrnly.dev/',
-    ];
+    $allowed_domains = unserialize( BEHEAD_ALLOWED_DOMAINS );
 
     $request_server = $_SERVER['HTTP_HOST'];
 
