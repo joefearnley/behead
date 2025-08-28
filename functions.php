@@ -114,3 +114,16 @@ add_action( 'rest_api_init', function () {
 
 // Filter to restrict access to the REST API
 add_filter( 'rest_authentication_errors', 'behead_filter_incoming_connections' );
+
+/**
+ * Redirect the home and front page to a specified URL.
+ */
+function default_page() {
+    if ( is_home() or is_front_page() ) {
+        exit( wp_redirect( BEHEAD_REDIRECT_URL ) );
+    }
+}
+
+if ( defined('BEHEAD_REDIRECT_URL') ) {
+    add_action( 'template_redirect', 'default_page' );
+}
